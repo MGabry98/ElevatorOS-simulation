@@ -107,58 +107,63 @@ public class Control {
 				// }
 
 			} else if (input.startsWith("floor ")) {
-				if (!Memory.noPriorityProcess.contains(fan)) {
-					fan = new FanProcess(elevator);
-					fan.start();
-					System.out.println(fan.ThreadName
-							+ " Thread is running now");
-					Memory.noPriorityProcess.add(fan);
-					runningThreads++;
-				}
-				if (!Memory.highPriorityProcesses.contains(close)) {
-					close = new CloseDoorProcess(elevator);
-					Memory.highPriorityProcesses.add(close);
-					close.start();
-					System.out.println(close.ThreadName
-							+ " Thread is running now");
-					runningThreads++;
-				}
-
 				int x = Integer.parseInt(input.substring(6));
-				elevator.addNewDestinatoin(x);
-				if (!Memory.mediumPriorityProcesses.contains(move)) {
-					move = new MoveProcess(elevator);
-					Memory.mediumPriorityProcesses.add(move);
-					while (!Memory.mediumPriorityProcesses.isEmpty()) {
+				if (x <= 6 && x >= 0) {
+					if (!Memory.noPriorityProcess.contains(fan)) {
+						fan = new FanProcess(elevator);
+						fan.start();
+						System.out.println(fan.ThreadName
+								+ " Thread is running now");
+						Memory.noPriorityProcess.add(fan);
+						runningThreads++;
+					}
+					if (!Memory.highPriorityProcesses.contains(close)) {
+						close = new CloseDoorProcess(elevator);
+						Memory.highPriorityProcesses.add(close);
+						close.start();
+						System.out.println(close.ThreadName
+								+ " Thread is running now");
+						runningThreads++;
+					}
 
-						if (Memory.highPriorityProcesses.isEmpty()
-								&& !move.isAlive()) {
-							move.start();
-							System.out.println(move.ThreadName
-									+ " Thread is running now");
-							runningThreads++;
+					elevator.addNewDestinatoin(x);
+					if (!Memory.mediumPriorityProcesses.contains(move)) {
+						move = new MoveProcess(elevator);
+						Memory.mediumPriorityProcesses.add(move);
+						while (!Memory.mediumPriorityProcesses.isEmpty()) {
+
+							if (Memory.highPriorityProcesses.isEmpty()
+									&& !move.isAlive()) {
+								move.start();
+								System.out.println(move.ThreadName
+										+ " Thread is running now");
+								runningThreads++;
+							}
 						}
 					}
-				}
-				if (!Memory.lowPriorityProcesses.contains(open)) {
-					open = new OpenDoorProcess(elevator);
-					Memory.lowPriorityProcesses.add(open);
-					open.start();
-					System.out.println(open.ThreadName
-							+ " Thread is running now");
-					runningThreads++;
-				}
-				while (fan != null) {
-					if (Memory.lowPriorityProcesses.isEmpty()) {
-						runningThreads--;
-						Memory.noPriorityProcess.remove(Control.fan);
-						System.out.println(Control.fan.ThreadName
-								+ " Thread has been stopped");
-						fan.stop();
-						fan = null;
+					if (!Memory.lowPriorityProcesses.contains(open)) {
+						open = new OpenDoorProcess(elevator);
+						Memory.lowPriorityProcesses.add(open);
+						open.start();
+						System.out.println(open.ThreadName
+								+ " Thread is running now");
+						runningThreads++;
 					}
-				}
-			} else
+					while (fan != null) {
+						if (Memory.lowPriorityProcesses.isEmpty()) {
+							runningThreads--;
+							Memory.noPriorityProcess.remove(Control.fan);
+							System.out.println(Control.fan.ThreadName
+									+ " Thread has been stopped");
+							fan.stop();
+							fan = null;
+						}
+					}
+				}else
+					System.out.println("please enter a valid number from 0 to 6");
+			}
+
+			else
 				System.out.println("please enter a valid word");
 
 		}
