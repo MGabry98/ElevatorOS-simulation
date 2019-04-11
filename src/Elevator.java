@@ -1,75 +1,68 @@
-
 import java.util.PriorityQueue;
 
-
-
-
 public class Elevator implements ElevatorFactory {
-  int currentFloor;
-  PriorityQueue<Integer> destinationFloors;
-  String Screen;
-  boolean Fan=false;
-  boolean door=true;//opened if true 
-  
-  public Elevator(Integer currentFloor) {
-    this.currentFloor = currentFloor;
-    this.destinationFloors = new PriorityQueue<Integer>();
-//    destinationFloors.add(2);
-//    destinationFloors.add(5);
-    Screen="";
-  }
+	int currentFloor;
+	PriorityQueue<Integer> destinationFloors;
+	String Screen;
+	boolean Fan = false;
+	boolean door = true;// opened if true
 
-  public int nextDestionation(){
-    return this.destinationFloors.peek();
-  }
+	public Elevator(Integer currentFloor) {
+		this.currentFloor = currentFloor;
+		this.destinationFloors = new PriorityQueue<Integer>();
+		Screen = "";
+	}
 
-  public int currentFloor(){
-    return this.currentFloor;
-  }
+	public int nextDestionation() {
+		return this.destinationFloors.peek();
+	}
 
-  public void popDestination(){
-    this.destinationFloors.remove();
-  }
-  @Override
-  public void addNewDestinatoin(int destination) {
-	  if(!destinationFloors.contains((Integer)destination)){
-		  
-	  
-    this.destinationFloors.add(destination);
-	  }
-  }
+	public int currentFloor() {
+		return this.currentFloor;
+	}
 
-  @Override
-  public void moveUp() {
-    currentFloor++;
-    
-  }
+	public void popDestination() {
+		this.destinationFloors.remove();
+	}
 
-  @Override
-  public void moveDown() {
-    currentFloor--;
-  }
+	@Override
+	public void addNewDestinatoin(int destination) {
+		if (!destinationFloors.contains((Integer) destination)) {
 
-  @Override
-  public Direction direction() {
-    if (destinationFloors.size() > 0){
-      if (currentFloor < destinationFloors.peek()){
-        return Direction.Up;
-      } else if (currentFloor > destinationFloors.peek()) {
-        return Direction.Down;
-      }
-      else{
-    	  destinationFloors.remove();
-    	  return Direction.Hold;
-      }
-    }
-    return Direction.Hold;
-    
-    
-  }
+			this.destinationFloors.add(destination);
+		}
+	}
 
-  @Override
-  public ElevatorStatus status() {
-    return (destinationFloors.size() > 0)?ElevatorStatus.ELEVATOR_OCCUPIED:ElevatorStatus.ELEVATOR_EMPTY;
-  }
+	@Override
+	public void moveUp() {
+		currentFloor++;
+
+	}
+
+	@Override
+	public void moveDown() {
+		currentFloor--;
+	}
+
+	@Override
+	public Direction direction() {
+		if (destinationFloors.size() > 0) {
+			if (currentFloor < destinationFloors.peek()) {
+				return Direction.Up;
+			} else if (currentFloor > destinationFloors.peek()) {
+				return Direction.Down;
+			} else {
+				destinationFloors.remove();
+				return Direction.Hold;
+			}
+		}
+		return Direction.Hold;
+
+	}
+
+	@Override
+	public ElevatorStatus status() {
+		return (destinationFloors.size() > 0) ? ElevatorStatus.ELEVATOR_OCCUPIED
+				: ElevatorStatus.ELEVATOR_EMPTY;
+	}
 }
