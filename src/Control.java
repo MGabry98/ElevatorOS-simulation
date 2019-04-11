@@ -108,7 +108,9 @@ public class Control {
 
 			} else if (input.startsWith("floor ")) {
 				int x = Integer.parseInt(input.substring(6));
-				if (x <= 6 && x >= 0) {
+				
+				if(elevator.currentFloor!=x){
+				if (x <= 7 && x >= 0) {
 					if (!Memory.noPriorityProcess.contains(fan)) {
 						fan = new FanProcess(elevator);
 						fan.start();
@@ -159,8 +161,13 @@ public class Control {
 							fan = null;
 						}
 					}
+				}else{
+					System.out.println("please enter a valid number from 0 to 7");
+
+				}
 				}else
-					System.out.println("please enter a valid number from 0 to 6");
+					System.out.println("You are already in floor"+" "+x);
+
 			}
 
 			else
