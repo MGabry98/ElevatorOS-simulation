@@ -1,3 +1,6 @@
+import java.time.Duration;
+import java.time.Instant;
+import java.util.concurrent.TimeUnit;
 
 public class OpenDoorProcess extends Process{
 
@@ -10,13 +13,16 @@ public class OpenDoorProcess extends Process{
 	@Override
 	public void run() {
 		elevator.door=true;
+
 		IO.print("Open Door Thread has been Stopped");
 
-		Control.runningThreads--;
+		Memory.runningThreads--;
 		Memory.lowPriorityProcesses.remove(this);
+	
+		Memory.openEndProcess=Instant.now();
+		Memory.openDurationProcess=Duration.between(Memory.openStartProcess, Memory.openEndProcess).toMillis()+Memory.openDurationProcess;
 		this.stop();
-		
-		Control.open=null;
+		Memory.open=null;
 
 	}
 	

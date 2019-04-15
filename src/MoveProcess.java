@@ -1,3 +1,7 @@
+import java.time.Duration;
+import java.time.Instant;
+import java.util.concurrent.TimeUnit;
+
 public class MoveProcess extends Process {
 
 	Elevator elevator;
@@ -15,7 +19,13 @@ public class MoveProcess extends Process {
 			Direction d;
 			int temp = elevator.nextDestionation();
 			while (elevator.direction() != Direction.Hold) {
-				
+				try {
+					
+					TimeUnit.SECONDS.sleep(1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+System.out.println("Cant wait i am in hurry");
+}
 				d = elevator.direction();
 				if (d == Direction.Up) {
 					elevator.moveUp();
@@ -36,15 +46,17 @@ public class MoveProcess extends Process {
 		
 		
 		
-		IO.print(this.ThreadName + " Thread has been stopped");
+		IO.print(this.ThreadName + " process has been stopped");
 		
-		Control.runningThreads--;
+		Memory.runningThreads--;
 	
 		Memory.mediumPriorityProcesses.remove(this);
+		
+		
+		Memory.moveEndProcess=Instant.now();
+		Memory.moveDurationProcess=Duration.between(Memory.moveStartProcess, Memory.moveEndProcess).toMillis()+Memory.moveDurationProcess;
 		this.stop();
-		
-		
-		Control.move=null;
+		Memory.move=null;
 
 	}
 
