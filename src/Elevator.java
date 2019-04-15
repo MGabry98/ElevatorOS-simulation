@@ -1,58 +1,56 @@
 import java.util.PriorityQueue;
 
 public class Elevator implements ElevatorFactory {
-	int currentFloor;
-	PriorityQueue<Integer> destinationFloors;
 	String Screen;
 	boolean Fan = false;
 	boolean door = true;// opened if true
 
 	public Elevator(Integer currentFloor) {
-		this.currentFloor = currentFloor;
-		this.destinationFloors = new PriorityQueue<Integer>();
+		Memory.currentFloor = currentFloor;
+		Memory.destinationFloors = new PriorityQueue<Integer>();
 		Screen = "";
 	}
 
 	public int nextDestionation() {
-		return this.destinationFloors.peek();
+		return Memory.destinationFloors.peek();
 	}
 
 	public int currentFloor() {
-		return this.currentFloor;
+		return Memory.currentFloor;
 	}
 
 	public void popDestination() {
-		this.destinationFloors.remove();
+		Memory.destinationFloors.remove();
 	}
 
 	@Override
 	public void addNewDestinatoin(int destination) {
-		if (!destinationFloors.contains((Integer) destination)) {
+		if (!Memory.destinationFloors.contains((Integer) destination)) {
 
-			this.destinationFloors.add(destination);
+			Memory.destinationFloors.add(destination);
 		}
 	}
 
 	@Override
 	public void moveUp() {
-		currentFloor++;
+		Memory.currentFloor++;
 
 	}
 
 	@Override
 	public void moveDown() {
-		currentFloor--;
+		Memory.currentFloor--;
 	}
 
 	@Override
 	public Direction direction() {
-		if (destinationFloors.size() > 0) {
-			if (currentFloor < destinationFloors.peek()) {
+		if (Memory.destinationFloors.size() > 0) {
+			if (Memory.currentFloor < Memory.destinationFloors.peek()) {
 				return Direction.Up;
-			} else if (currentFloor > destinationFloors.peek()) {
+			} else if (Memory.currentFloor > Memory.destinationFloors.peek()) {
 				return Direction.Down;
 			} else {
-				destinationFloors.remove();
+				Memory.destinationFloors.remove();
 				return Direction.Hold;
 			}
 		}
@@ -62,7 +60,7 @@ public class Elevator implements ElevatorFactory {
 
 	@Override
 	public ElevatorStatus status() {
-		return (destinationFloors.size() > 0) ? ElevatorStatus.ELEVATOR_OCCUPIED
+		return (Memory.destinationFloors.size() > 0) ? ElevatorStatus.ELEVATOR_OCCUPIED
 				: ElevatorStatus.ELEVATOR_EMPTY;
 	}
 }

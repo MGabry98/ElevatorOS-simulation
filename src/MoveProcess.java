@@ -10,7 +10,7 @@ public class MoveProcess extends Process {
 
 	@Override
 	public void run() {
-		while (!elevator.destinationFloors.isEmpty()) {
+		while (!Memory.destinationFloors.isEmpty()) {
 
 			Direction d;
 			int temp = elevator.nextDestionation();
@@ -21,12 +21,12 @@ public class MoveProcess extends Process {
 					elevator.moveUp();
 					IO.print("Elevator is moving Up  ,Elevator next destination is "
 									+ elevator.nextDestionation()
-									+ ",current floor " + elevator.currentFloor);
+									+ ",current floor " + Memory.currentFloor);
 				} else if (d == Direction.Down) {
 					elevator.moveDown();
 					IO.print("Elevator is moving down  ,Elevator next destination is "
 									+ elevator.nextDestionation()
-									+ ",current floor " + elevator.currentFloor);
+									+ ",current floor " + Memory.currentFloor);
 				}
 
 			}

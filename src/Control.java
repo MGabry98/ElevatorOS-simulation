@@ -1,7 +1,3 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-
 public class Control {
 
 	static int runningThreads = 0;
@@ -57,7 +53,7 @@ public class Control {
 	public static void floor(Elevator elevator,String input){
 		int x = Integer.parseInt(input.substring(6));
 		
-		if(elevator.currentFloor!=x){
+		if(Memory.currentFloor!=x){
 		if (x <= 7 && x >= 0) {
 			if (!Memory.noPriorityProcess.contains(fan)) {
 				fan = new FanProcess(elevator);
