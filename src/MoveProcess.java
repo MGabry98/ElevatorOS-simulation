@@ -19,14 +19,12 @@ public class MoveProcess extends Process {
 				d = elevator.direction();
 				if (d == Direction.Up) {
 					elevator.moveUp();
-					System.out
-							.println("Elevator is moving Up  ,Elevator next destination is "
+					IO.print("Elevator is moving Up  ,Elevator next destination is "
 									+ elevator.nextDestionation()
 									+ ",current floor " + elevator.currentFloor);
 				} else if (d == Direction.Down) {
 					elevator.moveDown();
-					System.out
-							.println("Elevator is moving down  ,Elevator next destination is "
+					IO.print("Elevator is moving down  ,Elevator next destination is "
 									+ elevator.nextDestionation()
 									+ ",current floor " + elevator.currentFloor);
 				}
@@ -38,7 +36,7 @@ public class MoveProcess extends Process {
 		
 		
 		
-		System.out.println(this.ThreadName + " Thread has been stopped");
+		IO.print(this.ThreadName + " Thread has been stopped");
 		
 		Control.runningThreads--;
 	

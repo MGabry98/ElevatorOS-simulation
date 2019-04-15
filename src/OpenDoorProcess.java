@@ -10,7 +10,7 @@ public class OpenDoorProcess extends Process{
 	@Override
 	public void run() {
 		elevator.door=true;
-		System.out.println("Open Door Thread has been Stopped");
+		IO.print("Open Door Thread has been Stopped");
 
 		Control.runningThreads--;
 		Memory.lowPriorityProcesses.remove(this);
