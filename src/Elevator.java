@@ -6,51 +6,51 @@ public class Elevator implements ElevatorFactory {
 	boolean door = true;// opened if true
 
 	public Elevator(Integer currentFloor) {
-		Memory.currentFloor = currentFloor;
-		Memory.destinationFloors = new PriorityQueue<Integer>();
+		IO.Memory.currentFloor = currentFloor;
+		IO.Memory.destinationFloors = new PriorityQueue<Integer>();
 		Screen = "";
 	}
 
 	public int nextDestionation() {
-		return Memory.destinationFloors.peek();
+		return IO.Memory.destinationFloors.peek();
 	}
 
 	public int currentFloor() {
-		return Memory.currentFloor;
+		return IO.Memory.currentFloor;
 	}
 
 	public void popDestination() {
-		Memory.destinationFloors.remove();
+		IO.Memory.destinationFloors.remove();
 	}
 
 	@Override
 	public void addNewDestinatoin(int destination) {
-		if (!Memory.destinationFloors.contains((Integer) destination)) {
+		if (!IO.Memory.destinationFloors.contains((Integer) destination)) {
 
-			Memory.destinationFloors.add(destination);
+			IO.Memory.destinationFloors.add(destination);
 		}
 	}
 
 	@Override
 	public void moveUp() {
-		Memory.currentFloor++;
+		IO.Memory.currentFloor++;
 
 	}
 
 	@Override
 	public void moveDown() {
-		Memory.currentFloor--;
+		IO.Memory.currentFloor--;
 	}
 
 	@Override
 	public Direction direction() {
-		if (Memory.destinationFloors.size() > 0) {
-			if (Memory.currentFloor < Memory.destinationFloors.peek()) {
+		if (IO.Memory.destinationFloors.size() > 0) {
+			if (IO.Memory.currentFloor < IO.Memory.destinationFloors.peek()) {
 				return Direction.Up;
-			} else if (Memory.currentFloor > Memory.destinationFloors.peek()) {
+			} else if (IO.Memory.currentFloor > IO.Memory.destinationFloors.peek()) {
 				return Direction.Down;
 			} else {
-				Memory.destinationFloors.remove();
+				IO.Memory.destinationFloors.remove();
 				return Direction.Hold;
 			}
 		}
@@ -60,7 +60,7 @@ public class Elevator implements ElevatorFactory {
 
 	@Override
 	public ElevatorStatus status() {
-		return (Memory.destinationFloors.size() > 0) ? ElevatorStatus.ELEVATOR_OCCUPIED
+		return (IO.Memory.destinationFloors.size() > 0) ? ElevatorStatus.ELEVATOR_OCCUPIED
 				: ElevatorStatus.ELEVATOR_EMPTY;
 	}
 }

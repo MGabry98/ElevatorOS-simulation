@@ -1,5 +1,6 @@
 import java.time.Duration;
 import java.time.Instant;
+import java.util.concurrent.TimeUnit;
 
 public class CloseDoorProcess extends Process {
 
@@ -13,15 +14,24 @@ public class CloseDoorProcess extends Process {
 	@Override
 	public void run() {
 		elevator.door = false;
+		try {
+
+			TimeUnit.MILLISECONDS.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Cant wait i am in hurry");
+		}
+	
 		IO.print("Close Door Thread has been Stopped");
 
-		Memory.runningThreads--;
-		Memory.highPriorityProcesses.remove(this);
-		Memory.closeEndProcess=Instant.now();
-		Memory.closeDurationProcess=Duration.between(Memory.closeStartProcess, Memory.closeEndProcess).toMillis()+Memory.closeDurationProcess;
-		
+		IO.Memory.runningThreads--;
+		IO.Memory.highPriorityProcesses.remove(this);
+		IO.Memory.closeEndProcess = Instant.now();
+		IO.Memory.closeDurationProcess = Duration.between(IO.Memory.closeStartProcess, IO.Memory.closeEndProcess)
+				.toMillis() + IO.Memory.closeDurationProcess;
+
 		this.stop();
-		Memory.close = null;
+		IO.Memory.close = null;
 	}
 
 }
