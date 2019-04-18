@@ -17,14 +17,14 @@ public class OpenDoorProcess extends Process {
 
 		IO.print("Open Door Thread has been Stopped");
 
-		IO.Memory.runningThreads--;
-		IO.Memory.lowPriorityProcesses.remove(this);
+		GUI.gui.Memory.runningThreads--;
+		GUI.gui.Memory.lowPriorityProcesses.remove(this);
 
-		IO.Memory.openEndProcess = Instant.now();
-		IO.Memory.openDurationProcess = Duration.between(IO.Memory.openStartProcess, IO.Memory.openEndProcess)
-				.toMillis() + IO.Memory.openDurationProcess;
+		GUI.gui.Memory.openEndProcess = Instant.now();
+		GUI.gui.Memory.openDurationProcess = Duration.between(GUI.gui.Memory.openStartProcess, GUI.gui.Memory.openEndProcess)
+				.toMillis() + GUI.gui.Memory.openDurationProcess;
 		this.stop();
-		IO.Memory.open = null;
+		GUI.gui.Memory.open = null;
 
 	}
 

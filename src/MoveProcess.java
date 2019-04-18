@@ -2,6 +2,9 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 public class MoveProcess extends Process {
 
 	Elevator elevator;
@@ -13,7 +16,7 @@ public class MoveProcess extends Process {
 
 	@Override
 	public void run() {
-		while (!IO.Memory.destinationFloors.isEmpty()) {
+		while (!GUI.gui.Memory.destinationFloors.isEmpty()) {
 
 			Direction d;
 			int temp = elevator.nextDestionation();
@@ -29,11 +32,12 @@ public class MoveProcess extends Process {
 				if (d == Direction.Up) {
 					elevator.moveUp();
 					IO.print("Elevator is moving Up  ,Elevator next destination is " + elevator.nextDestionation()
-							+ ",current floor " + IO.Memory.currentFloor);
+							+ ",current floor " + GUI.gui.Memory.currentFloor);
+//					GUI.gui.setContentPane(new JLabel(new ImageIcon("src/background"+GUI.gui.Memory.currentFloor+".png")));
 				} else if (d == Direction.Down) {
 					elevator.moveDown();
 					IO.print("Elevator is moving down  ,Elevator next destination is " + elevator.nextDestionation()
-							+ ",current floor " + IO.Memory.currentFloor);
+							+ ",current floor " + GUI.gui.Memory.currentFloor);
 				}
 
 			}
@@ -42,15 +46,15 @@ public class MoveProcess extends Process {
 
 		IO.print(this.ThreadName + " process has been stopped");
 
-		IO.Memory.runningThreads--;
+		GUI.gui.Memory.runningThreads--;
 
-		IO.Memory.mediumPriorityProcesses.remove(this);
+		GUI.gui.Memory.mediumPriorityProcesses.remove(this);
 
-		IO.Memory.moveEndProcess = Instant.now();
-		IO.Memory.moveDurationProcess = Duration.between(IO.Memory.moveStartProcess, IO.Memory.moveEndProcess)
-				.toMillis() + IO.Memory.moveDurationProcess;
+		GUI.gui.Memory.moveEndProcess = Instant.now();
+		GUI.gui.Memory.moveDurationProcess = Duration.between(GUI.gui.Memory.moveStartProcess, GUI.gui.Memory.moveEndProcess)
+				.toMillis() + GUI.gui.Memory.moveDurationProcess;
 		this.stop();
-		IO.Memory.move = null;
+		GUI.gui.Memory.move = null;
 
 	}
 

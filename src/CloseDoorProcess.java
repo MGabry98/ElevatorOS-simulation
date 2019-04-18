@@ -24,14 +24,14 @@ public class CloseDoorProcess extends Process {
 	
 		IO.print("Close Door Thread has been Stopped");
 
-		IO.Memory.runningThreads--;
-		IO.Memory.highPriorityProcesses.remove(this);
-		IO.Memory.closeEndProcess = Instant.now();
-		IO.Memory.closeDurationProcess = Duration.between(IO.Memory.closeStartProcess, IO.Memory.closeEndProcess)
-				.toMillis() + IO.Memory.closeDurationProcess;
+		GUI.gui.Memory.runningThreads--;
+		GUI.gui.Memory.highPriorityProcesses.remove(this);
+		GUI.gui.Memory.closeEndProcess = Instant.now();
+		GUI.gui.Memory.closeDurationProcess = Duration.between(GUI.gui.Memory.closeStartProcess, GUI.gui.Memory.closeEndProcess)
+				.toMillis() + GUI.gui.Memory.closeDurationProcess;
 
 		this.stop();
-		IO.Memory.close = null;
+		GUI.gui.Memory.close = null;
 	}
 
 }

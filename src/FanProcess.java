@@ -1,3 +1,5 @@
+import javax.swing.ImageIcon;
+
 public class FanProcess extends Process {
 	Elevator elevator;
 

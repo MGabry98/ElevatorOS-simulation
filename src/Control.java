@@ -2,52 +2,55 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 public class Control {
 
 	static Instant start;
 
 	public static void time(Elevator elevator) {
 
-		if (!IO.Memory.noPriorityProcess.contains(IO.Memory.time)) {
-			IO.Memory.time = new ScreenTimeProcess(elevator);
-			if (IO.Memory.noPriorityProcess.contains(IO.Memory.currentFloorProcess)) {
-				IO.Memory.currentFloorProcess.stop();
-				IO.Memory.currentFloorEndProcess = Instant.now();
-				IO.Memory.currentFloorDurationProcess = Duration
-						.between(IO.Memory.currentFloorStartProcess, IO.Memory.currentFloorEndProcess).toMillis()
-						+ IO.Memory.currentFloorDurationProcess;
-				IO.print(IO.Memory.currentFloorProcess.ThreadName + " Process has been stopped");
-				IO.Memory.runningThreads--;
-				IO.Memory.noPriorityProcess.remove(IO.Memory.currentFloorProcess);
+		if (!GUI.gui.Memory.noPriorityProcess.contains(GUI.gui.Memory.time)) {
+			GUI.gui.Memory.time = new ScreenTimeProcess(elevator);
+			if (GUI.gui.Memory.noPriorityProcess.contains(GUI.gui.Memory.currentFloorProcess)) {
+				GUI.gui.Memory.currentFloorProcess.stop();
+				GUI.gui.Memory.currentFloorEndProcess = Instant.now();
+				GUI.gui.Memory.currentFloorDurationProcess = Duration
+						.between(GUI.gui.Memory.currentFloorStartProcess, GUI.gui.Memory.currentFloorEndProcess).toMillis()
+						+ GUI.gui.Memory.currentFloorDurationProcess;
+				IO.print(GUI.gui.Memory.currentFloorProcess.ThreadName + " Process has been stopped");
+				GUI.gui.Memory.runningThreads--;
+				GUI.gui.Memory.noPriorityProcess.remove(GUI.gui.Memory.currentFloorProcess);
 			}
 			start = Instant.now();
-			IO.Memory.time.start();
-			IO.Memory.runningThreads++;
-			IO.print(IO.Memory.time.ThreadName + " Process is running now");
-			IO.Memory.noPriorityProcess.add(IO.Memory.time);
+			GUI.gui.Memory.time.start();
+			GUI.gui.Memory.runningThreads++;
+			IO.print(GUI.gui.Memory.time.ThreadName + " Process is running now");
+			GUI.gui.Memory.noPriorityProcess.add(GUI.gui.Memory.time);
 		} else
 			IO.print("Already running");
 
 	}
 
 	public static void currentfloor(Elevator elevator) {
-		if (!IO.Memory.noPriorityProcess.contains(IO.Memory.currentFloorProcess)) {
-			IO.Memory.currentFloorProcess = new ScreenCurrentFloorProcess(elevator);
-			if (IO.Memory.noPriorityProcess.contains(IO.Memory.time)) {
+		if (!GUI.gui.Memory.noPriorityProcess.contains(GUI.gui.Memory.currentFloorProcess)) {
+			GUI.gui.Memory.currentFloorProcess = new ScreenCurrentFloorProcess(elevator);
+			if (GUI.gui.Memory.noPriorityProcess.contains(GUI.gui.Memory.time)) {
 
-				IO.Memory.time.stop();
-				IO.Memory.timeendprocess = Instant.now();
-				IO.Memory.timedurationprocess = Duration.between(IO.Memory.timestartprocess, IO.Memory.timeendprocess)
-						.toMillis() + IO.Memory.timedurationprocess;
+				GUI.gui.Memory.time.stop();
+				GUI.gui.Memory.timeendprocess = Instant.now();
+				GUI.gui.Memory.timedurationprocess = Duration.between(GUI.gui.Memory.timestartprocess, GUI.gui.Memory.timeendprocess)
+						.toMillis() + GUI.gui.Memory.timedurationprocess;
 
-				IO.print(IO.Memory.time.ThreadName + " Process has been stopped");
-				IO.Memory.runningThreads--;
-				IO.Memory.noPriorityProcess.remove(IO.Memory.time);
+				IO.print(GUI.gui.Memory.time.ThreadName + " Process has been stopped");
+				GUI.gui.Memory.runningThreads--;
+				GUI.gui.Memory.noPriorityProcess.remove(GUI.gui.Memory.time);
 			}
-			IO.Memory.currentFloorProcess.start();
-			IO.print(IO.Memory.currentFloorProcess.ThreadName + " Process is running now");
-			IO.Memory.runningThreads++;
-			IO.Memory.noPriorityProcess.add(IO.Memory.currentFloorProcess);
+			GUI.gui.Memory.currentFloorProcess.start();
+			IO.print(GUI.gui.Memory.currentFloorProcess.ThreadName + " Process is running now");
+			GUI.gui.Memory.runningThreads++;
+			GUI.gui.Memory.noPriorityProcess.add(GUI.gui.Memory.currentFloorProcess);
 
 		} else
 			IO.print("Already running");
@@ -57,26 +60,29 @@ public class Control {
 	public static void floor(Elevator elevator, String input) {
 		int x = Integer.parseInt(input.substring(6));
 
-		if (IO.Memory.currentFloor != x) {
-			if (x <= IO.Memory.maxFloor && x >= IO.Memory.minFloor) {
-				if (!IO.Memory.noPriorityProcess.contains(IO.Memory.fan)) {
+		if (GUI.gui.Memory.currentFloor != x) {
+			if (x <= GUI.gui.Memory.maxFloor && x >= GUI.gui.Memory.minFloor) {
+				if (!GUI.gui.Memory.noPriorityProcess.contains(GUI.gui.Memory.fan)) {
 
-					IO.Memory.fan = new FanProcess(elevator);
-					IO.Memory.fan.start();
-					IO.Memory.fanStartProcess = Instant.now();
-					IO.print(IO.Memory.fan.ThreadName + " Process is running now");
-					IO.Memory.noPriorityProcess.add(IO.Memory.fan);
-					IO.Memory.runningThreads++;
+					GUI.gui.Memory.fan = new FanProcess(elevator);
+//					GUI.gui.screen.setIcon(new ImageIcon("src/fan2.gif"));
+//					GUI.gui.fan=new JLabel(new ImageIcon("src/fan2.gif"));
+//					GUI.gui.setVisible(true);
+					GUI.gui.Memory.fan.start();
+					GUI.gui.Memory.fanStartProcess = Instant.now();
+					IO.print(GUI.gui.Memory.fan.ThreadName + " Process is running now");
+					GUI.gui.Memory.noPriorityProcess.add(GUI.gui.Memory.fan);
+					GUI.gui.Memory.runningThreads++;
 				}
-				if (!IO.Memory.highPriorityProcesses.contains(IO.Memory.close)) {
-					IO.Memory.close = new CloseDoorProcess(elevator);
-					IO.Memory.highPriorityProcesses.add(IO.Memory.close);
-					IO.print(IO.Memory.close.ThreadName + " Process is running now");
-					IO.Memory.closeStartProcess = Instant.now();
+				if (!GUI.gui.Memory.highPriorityProcesses.contains(GUI.gui.Memory.close)) {
+					GUI.gui.Memory.close = new CloseDoorProcess(elevator);
+					GUI.gui.Memory.highPriorityProcesses.add(GUI.gui.Memory.close);
+					IO.print(GUI.gui.Memory.close.ThreadName + " Process is running now");
+					GUI.gui.Memory.closeStartProcess = Instant.now();
 
 
-					IO.Memory.runningThreads++;
-					IO.Memory.close.start();
+					GUI.gui.Memory.runningThreads++;
+					GUI.gui.Memory.close.start();
 
 					try {
 
@@ -89,25 +95,25 @@ public class Control {
 
 
 				elevator.addNewDestinatoin(x);
-				if (!IO.Memory.mediumPriorityProcesses.contains(IO.Memory.move)) {
-					IO.Memory.move = new MoveProcess(elevator);
-					IO.Memory.mediumPriorityProcesses.add(IO.Memory.move);
-					while (!IO.Memory.mediumPriorityProcesses.isEmpty()) {
+				if (!GUI.gui.Memory.mediumPriorityProcesses.contains(GUI.gui.Memory.move)) {
+					GUI.gui.Memory.move = new MoveProcess(elevator);
+					GUI.gui.Memory.mediumPriorityProcesses.add(GUI.gui.Memory.move);
+					while (!GUI.gui.Memory.mediumPriorityProcesses.isEmpty()) {
 
-						if (IO.Memory.highPriorityProcesses.isEmpty() && !IO.Memory.move.isAlive()) {
-							IO.Memory.moveStartProcess = Instant.now();
-							IO.Memory.move.start();
-							IO.print(IO.Memory.move.ThreadName + " Process is running now");
-							IO.Memory.runningThreads++;
+						if (GUI.gui.Memory.highPriorityProcesses.isEmpty() && !GUI.gui.Memory.move.isAlive()) {
+							GUI.gui.Memory.moveStartProcess = Instant.now();
+							GUI.gui.Memory.move.start();
+							IO.print(GUI.gui.Memory.move.ThreadName + " Process is running now");
+							GUI.gui.Memory.runningThreads++;
 						}
 					}
 				}
-				if (!IO.Memory.lowPriorityProcesses.contains(IO.Memory.open)) {
-					IO.Memory.open = new OpenDoorProcess(elevator);
-					IO.Memory.lowPriorityProcesses.add(IO.Memory.open);
-					IO.Memory.openStartProcess = Instant.now();
+				if (!GUI.gui.Memory.lowPriorityProcesses.contains(GUI.gui.Memory.open)) {
+					GUI.gui.Memory.open = new OpenDoorProcess(elevator);
+					GUI.gui.Memory.lowPriorityProcesses.add(GUI.gui.Memory.open);
+					GUI.gui.Memory.openStartProcess = Instant.now();
 
-					IO.print(IO.Memory.open.ThreadName + " Process is running now");
+					IO.print(GUI.gui.Memory.open.ThreadName + " Process is running now");
 
 					try {
 
@@ -116,7 +122,7 @@ public class Control {
 						// TODO Auto-generated catch block
 						System.out.println("Cant wait i am in hurry");
 					}
-					IO.Memory.open.start();
+					GUI.gui.Memory.open.start();
 					try {
 
 						TimeUnit.MILLISECONDS.sleep(100);
@@ -124,20 +130,21 @@ public class Control {
 						// TODO Auto-generated catch block
 						System.out.println("Cant wait i am in hurry");
 					}
-					IO.Memory.runningThreads++;
+					GUI.gui.Memory.runningThreads++;
 				}
 
-				while (IO.Memory.fan != null) {
-					if (IO.Memory.lowPriorityProcesses.isEmpty()) {
-						IO.Memory.runningThreads--;
-						IO.Memory.noPriorityProcess.remove(IO.Memory.fan);
-						IO.print(IO.Memory.fan.ThreadName + " Process has been stopped");
-						IO.Memory.fanEndProcess = Instant.now();
-						IO.Memory.fanDurationProcess = Duration
-								.between(IO.Memory.fanStartProcess, IO.Memory.fanEndProcess).toMillis()
-								+ IO.Memory.fanDurationProcess;
-						IO.Memory.fan.stop();
-						IO.Memory.fan = null;
+				while (GUI.gui.Memory.fan != null) {
+					if (GUI.gui.Memory.lowPriorityProcesses.isEmpty()) {
+						GUI.gui.Memory.runningThreads--;
+						GUI.gui.Memory.noPriorityProcess.remove(GUI.gui.Memory.fan);
+						IO.print(GUI.gui.Memory.fan.ThreadName + " Process has been stopped");
+						GUI.gui.Memory.fanEndProcess = Instant.now();
+						GUI.gui.Memory.fanDurationProcess = Duration
+								.between(GUI.gui.Memory.fanStartProcess, GUI.gui.Memory.fanEndProcess).toMillis()
+								+ GUI.gui.Memory.fanDurationProcess;
+						GUI.gui.Memory.fan.stop();
+//						GUI.gui.fan.setIcon(new ImageIcon("src/fan2.jpg"));
+						GUI.gui.Memory.fan = null;
 					} else {
 						break;
 					}

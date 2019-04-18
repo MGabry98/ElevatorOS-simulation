@@ -17,7 +17,7 @@ public class Memory {
 	ArrayList<Process> lowPriorityProcesses = new ArrayList<Process>();
 	ArrayList<Process> noPriorityProcess = new ArrayList<Process>();
 	int currentFloor;
-	int maxFloor = 7;
+	int maxFloor = 4;
 	int minFloor = 0;
 	PriorityQueue<Integer> destinationFloors;
 	Instant startRunning;

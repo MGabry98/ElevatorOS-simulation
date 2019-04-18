@@ -20,6 +20,7 @@ public class ScreenTimeProcess extends Process {
 			DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 			String formattedDate = dateFormat.format(date);
 			elevator.Screen = ("Current time: " + formattedDate);
+			GUI.gui.screen.setText(elevator.Screen);
 		}
 	}
 

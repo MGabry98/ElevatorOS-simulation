@@ -10,9 +10,10 @@ public class ScreenCurrentFloorProcess extends Process{
 	@Override
 	public void run() {
 		
-		while(true)
+		while(true){
 			elevator.Screen="Current Floor: "+elevator.currentFloor();
-		
+			GUI.gui.screen.setText(elevator.Screen);
+		}
 	}
 
 }
