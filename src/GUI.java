@@ -36,6 +36,8 @@ public class GUI extends JFrame  implements ActionListener {
 	JLabel screen;
 	JLabel fan;
 	JPanel pb1;
+	JLabel door;
+	JLabel doorimage;
 	JLabel destElev;
 	public GUI() {
 		Memory.startRunning = Instant.now();
@@ -78,6 +80,7 @@ public class GUI extends JFrame  implements ActionListener {
 		middle.add(screen);
 //		fan = new JLabel(new ImageIcon("src/fan2.jpg"));
 		fan = new JLabel("Fan is off");
+		fan.setFont(new Font("Freestyle Script", Font.BOLD, 35));
 		fan.setForeground(Color.CYAN);
 		JPanel j = new JPanel();
 		j.setPreferredSize(new Dimension(200,100));
@@ -85,6 +88,18 @@ public class GUI extends JFrame  implements ActionListener {
 		j.setForeground(new Color(0,0,0,0));
 		middle.add(j);
 		middle.add(fan);
+		
+		door = new JLabel("Door is open  ");
+		doorimage = new JLabel();
+		
+		ImageIcon A= new ImageIcon("src/door open.jpg");
+		Icon s= resizeIcon(A,140,180);
+		doorimage.setIcon(s);
+
+	    door.setFont(new Font("Freestyle Script", Font.BOLD, 35));
+		middle.add(door);
+		middle.add(doorimage);
+//		middle.setOpaque(false);
 		JPanel fadya = new JPanel();
 		fadya.setBackground(new Color(0,0,0,0));
 		fadya.setPreferredSize(new Dimension(120,100));
@@ -146,16 +161,36 @@ public class GUI extends JFrame  implements ActionListener {
 		
 		if(elevator==null)
 			elevator = new Elevator(0);
+		
+		
 		if(e.getActionCommand().startsWith("floor")){
 //			Icon icon = new ImageIcon("src/fan2.gif");
 //			fan.setIcon(new ImageIcon("src/fan2.gif"));
-			fan.setText("fan is on");
+			fan.setText("Fan is on");
+			fan.paintImmediately(fan.getVisibleRect());
 //			System.out.println(fan.getText());
 //			this.setVisible(false);
 //			fan.revalidate();
 //			fan.repaint();
+			door.setText("Door is closed");
+			door.paintImmediately(door.getVisibleRect());
+			
+			ImageIcon A2= new ImageIcon("src/door closed.jpg");
+			Icon s1= resizeIcon(A2,140,180);
+			doorimage.setIcon(s1);
+			doorimage.paintImmediately(doorimage.getVisibleRect());
+
+			
+//			doorimage.setIcon(new ImageIcon("src/door close.jpg"));
 			Control.floor(elevator, e.getActionCommand(
 					));
+			
+			door.setText("Door is open");
+			
+			ImageIcon A= new ImageIcon("src/door open.jpg");
+			Icon s= resizeIcon(A,140,180);
+			doorimage.setIcon(s);
+			
 			destElev.setIcon(new ImageIcon("src/"+elevator.currentFloor()+"floor.png"));
 			destElev.setPreferredSize(new Dimension(80,500));
 		}
@@ -171,5 +206,10 @@ public class GUI extends JFrame  implements ActionListener {
 		}
 		
 		
+	}
+	private static Icon resizeIcon (ImageIcon icon, int resizedWidth, int resizedHeight){
+		Image img= icon.getImage();
+	    Image resizedImage= img.getScaledInstance(resizedWidth, resizedHeight, java.awt.Image.SCALE_SMOOTH);
+		return new ImageIcon(resizedImage);
 	}
 }

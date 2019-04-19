@@ -143,7 +143,7 @@ public class Control {
 								.between(GUI.gui.Memory.fanStartProcess, GUI.gui.Memory.fanEndProcess).toMillis()
 								+ GUI.gui.Memory.fanDurationProcess;
 						GUI.gui.Memory.fan.stop();
-//						GUI.gui.fan.setIcon(new ImageIcon("src/fan2.jpg"));
+						GUI.gui.fan.setText("Fan is off");
 						GUI.gui.Memory.fan = null;
 					} else {
 						break;
@@ -153,9 +153,10 @@ public class Control {
 				IO.print("please enter a valid number from 0 to 7");
 
 			}
-		} else
+		} else{
 			IO.print("You are already in floor" + " " + x);
-
+			GUI.gui.fan.setText("Fan is off");
+		}
 	}
 
 }
