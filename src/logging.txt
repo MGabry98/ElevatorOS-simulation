@@ -1,0 +1,11 @@
+
+Fan Process is running now
+Close Door Process is running now
+Close Door Thread has been Stopped
+Move Process is running now
+Elevator is moving Up  ,Elevator next destination is 1,current floor 1
+Move process has been stopped
+Open Door Process is running now
+Open Door Thread has been Stopped
+Fan Process has been stopped
+Time Process is running now

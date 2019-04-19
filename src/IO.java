@@ -3,9 +3,14 @@ import java.time.Instant;
 import java.util.Scanner;
 import java.lang.instrument.Instrumentation;
 
+
 //import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 import jdk.nashorn.internal.ir.debug.*;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 public class IO {
 	static Memory Memory = new Memory();
 
@@ -133,5 +138,13 @@ public class IO {
 
 	public static void print(String s) {
 		System.out.println(s);
+		 try (FileWriter writer = new FileWriter("src/logging.txt",true);
+	             BufferedWriter bw = new BufferedWriter(writer)) {
+
+	            bw.write("\n"+s);
+
+	        } catch (IOException e) {
+	            System.err.format("IOException: %s%n", e);
+	        }
 	}
 }

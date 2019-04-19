@@ -13,6 +13,9 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Instant;
 
 import javax.swing.Icon;
@@ -126,7 +129,16 @@ public class GUI extends JFrame  implements ActionListener {
 	}
 
 	public static void main(String[] args) {
+		 try (FileWriter writer = new FileWriter("src/logging.txt");
+	             BufferedWriter bw = new BufferedWriter(writer)) {
+
+	            bw.write("");
+
+	        } catch (IOException e) {
+	            System.err.format("IOException: %s%n", e);
+	        }
 		gui = new GUI();
+		
 	}
 
 	@Override
