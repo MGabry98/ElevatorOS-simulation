@@ -1,13 +1,19 @@
-/GUI/
+/CloseDoorProcess.class
+/Control.class
+/Direction.class
+/Elevator.class
+/ElevatorFactory.class
+/ElevatorStatus.class
+/FanProcess.class
 /GUI.class
-/FanGUI.class
-/fanGUI.class
-/aladdin2.gif
-/helpme.class
-/0floor.png
-/1floor.png
-/2floor.png
-/3floor.png
-/4floor.png
-/background.png
-/middle.png
+/IO.class
+/Memory.class
+/MoveProcess.class
+/OpenDoorProcess.class
+/Process.class
+/ScreenCurrentFloorProcess.class
+/ScreenTimeProcess.class
+/door closed.jpg
+/door open.jpg
+/logging.txt
+/background.jpg
