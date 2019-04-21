@@ -33,7 +33,7 @@ public class IO {
 			Scanner sc = new Scanner(System.in);
 			String input = sc.nextLine();
 			if (input.equalsIgnoreCase("bye")) {
-				if (Memory.time.isAlive()) {
+				if (Memory.time!=null&&Memory.time.isAlive()) {
 					Memory.time.stop();
 					Memory.timeendprocess = Instant.now();
 					Memory.timedurationprocess = Duration.between(
@@ -42,7 +42,7 @@ public class IO {
 							+ IO.Memory.timedurationprocess;
 
 				}
-				if (Memory.currentFloorProcess.isAlive()) {
+				if (Memory.currentFloorProcess!=null&&Memory.currentFloorProcess.isAlive()) {
 					Memory.currentFloorProcess.stop();
 					Memory.currentFloorEndProcess = Instant.now();
 					Memory.currentFloorDurationProcess = Duration.between(
@@ -146,5 +146,76 @@ public class IO {
 	        } catch (IOException e) {
 	            System.err.format("IOException: %s%n", e);
 	        }
+	}
+	public static void printLog(){
+
+		if (	GUI.gui.Memory.time!=null &&GUI.gui.Memory.time.isAlive()) {
+			GUI.gui.Memory.time.stop();
+			GUI.gui.Memory.timeendprocess = Instant.now();
+			GUI.gui.Memory.timedurationprocess = Duration.between(
+					GUI.gui.Memory.timestartprocess,
+					GUI.gui.Memory.timeendprocess).toMillis()
+					+ 	GUI.gui.Memory.timedurationprocess;
+
+		}
+		if (	GUI.gui.Memory.currentFloorProcess!=null &&	GUI.gui.Memory.currentFloorProcess.isAlive()) {
+			GUI.gui.Memory.currentFloorProcess.stop();
+			GUI.gui.Memory.currentFloorEndProcess = Instant.now();
+			GUI.gui.Memory.currentFloorDurationProcess = Duration.between(
+					GUI.gui.Memory.currentFloorStartProcess,
+					GUI.gui.Memory.currentFloorEndProcess).toMillis()
+					+	GUI.gui.Memory.currentFloorDurationProcess;
+
+		}
+		GUI.gui.Memory.endRunning = Instant.now();
+
+		IO.print("Total time for Move Process: "
+				+ 	GUI.gui.Memory.moveDurationProcess + " milliseconds" + '\n'
+				+ "Total time for Open Door Process: "
+				+ 	GUI.gui.Memory.openDurationProcess + " milliseconds" + '\n'
+				+ "Total time for Close Door Process: "
+				+ 	GUI.gui.Memory.closeDurationProcess + " milliseconds" + '\n'
+				+ "Total time for fan Process: "
+				+ GUI.gui.Memory.fanDurationProcess + " milliseconds" + '\n'
+				+ "Total time for time Process: "
+				+ GUI.gui.Memory.timedurationprocess + " milliseconds" + '\n'
+				+ "Total time for CurrentFloor Process: "
+				+ GUI.gui.Memory.currentFloorDurationProcess + " milliseconds"
+				+ '\n');
+		IO.print("Size of Move Process: "
+				+ ObjectSizeCalculator.getObjectSize(	GUI.gui.Memory.move)
+				+ " bytes"
+				+ '\n'
+				+ "Size of Open Door Process: "
+				+ ObjectSizeCalculator.getObjectSize(	GUI.gui.Memory.open)
+				+ " bytes"
+				+ '\n'
+				+ "Size of Close Door Process: "
+				+ ObjectSizeCalculator.getObjectSize(	GUI.gui.Memory.close)
+				+ " bytes"
+				+ '\n'
+				+ "Size of fan Process: "
+				+ ObjectSizeCalculator.getObjectSize(	GUI.gui.Memory.fan)
+				+ " bytes"
+				+ '\n'
+				+ "Size of time Process: "
+				+ ObjectSizeCalculator.getObjectSize(	GUI.gui.Memory.time)
+				+ " bytes"
+				+ '\n'
+				+ "Size of CurrentFloor Process: "
+				+ ObjectSizeCalculator
+						.getObjectSize(	GUI.gui.Memory.currentFloorProcess)
+				+ " bytes" + '\n');
+
+		IO.print("Total memory size:"
+						+ ((int) (ObjectSizeCalculator
+								.getObjectSize(	GUI.gui.Memory.move)
+								* 3.7
+								+ ObjectSizeCalculator
+										.getObjectSize(	GUI.gui.Memory.time) + ObjectSizeCalculator
+									.getObjectSize(	GUI.gui.Memory.currentFloorProcess))));
+
+
+	
 	}
 }

@@ -30,7 +30,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class GUI extends JFrame  implements ActionListener {
-	Memory Memory = new Memory();
+	static Memory Memory = new Memory();
 	Elevator elevator;
 	static GUI gui;
 	JLabel screen;
@@ -57,7 +57,15 @@ public class GUI extends JFrame  implements ActionListener {
 		
 		setSize(700, 700);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		       IO.printLog();
+		            System.exit(0);
+		        }
+		    
+		});
+		//setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		Image icon = Toolkit.getDefaultToolkit().getImage("src/Icon.png");
 		setIconImage(icon);
@@ -162,7 +170,8 @@ public class GUI extends JFrame  implements ActionListener {
 	        } catch (IOException e) {
 	            System.err.format("IOException: %s%n", e);
 	        }
-		gui = new GUI();
+			Memory.startRunning = Instant.now();
+			gui = new GUI();
 		
 	}
 

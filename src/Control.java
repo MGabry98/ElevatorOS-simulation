@@ -37,7 +37,7 @@ public class Control {
 		if (!GUI.gui.Memory.noPriorityProcess.contains(GUI.gui.Memory.currentFloorProcess)) {
 			GUI.gui.Memory.currentFloorProcess = new ScreenCurrentFloorProcess(elevator);
 			if (GUI.gui.Memory.noPriorityProcess.contains(GUI.gui.Memory.time)) {
-
+				
 				GUI.gui.Memory.time.stop();
 				GUI.gui.Memory.timeendprocess = Instant.now();
 				GUI.gui.Memory.timedurationprocess = Duration.between(GUI.gui.Memory.timestartprocess, GUI.gui.Memory.timeendprocess)
