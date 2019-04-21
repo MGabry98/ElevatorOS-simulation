@@ -1,4 +1,15 @@
-/logging.txt
-/door close.jpg
-/door open.jpg
-/door closed.jpg
+/CloseDoorProcess.class
+/Control.class
+/Direction.class
+/Elevator.class
+/ElevatorFactory.class
+/ElevatorStatus.class
+/FanProcess.class
+/GUI.class
+/IO.class
+/Memory.class
+/MoveProcess.class
+/OpenDoorProcess.class
+/Process.class
+/ScreenCurrentFloorProcess.class
+/ScreenTimeProcess.class

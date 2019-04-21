@@ -1,0 +1,62 @@
+
+Fan Process is running now
+Close Door Process is running now
+Close Door Thread has been Stopped
+Move Process is running now
+Elevator is moving Up  ,Elevator next destination is 1,current floor 1
+Move process has been stopped
+Open Door Process is running now
+Open Door Thread has been Stopped
+Fan Process has been stopped
+You are already in floor 1
+You are already in floor 1
+Fan Process is running now
+Close Door Process is running now
+Close Door Thread has been Stopped
+Move Process is running now
+Elevator is moving Up  ,Elevator next destination is 2,current floor 2
+Move process has been stopped
+Open Door Process is running now
+Open Door Thread has been Stopped
+Fan Process has been stopped
+Fan Process is running now
+Close Door Process is running now
+Close Door Thread has been Stopped
+Move Process is running now
+Elevator is moving Up  ,Elevator next destination is 3,current floor 3
+Move process has been stopped
+Open Door Process is running now
+Open Door Thread has been Stopped
+Fan Process has been stopped
+Fan Process is running now
+Close Door Process is running now
+Close Door Thread has been Stopped
+Move Process is running now
+Elevator is moving Up  ,Elevator next destination is 4,current floor 4
+Move process has been stopped
+Open Door Process is running now
+Open Door Thread has been Stopped
+Fan Process has been stopped
+Fan Process is running now
+Close Door Process is running now
+Close Door Thread has been Stopped
+Move Process is running now
+Elevator is moving down  ,Elevator next destination is 0,current floor 3
+Elevator is moving down  ,Elevator next destination is 0,current floor 2
+Elevator is moving down  ,Elevator next destination is 0,current floor 1
+Elevator is moving down  ,Elevator next destination is 0,current floor 0
+Move process has been stopped
+Open Door Process is running now
+Open Door Thread has been Stopped
+Fan Process has been stopped
+Fan Process is running now
+Close Door Process is running now
+Close Door Thread has been Stopped
+Move Process is running now
+Elevator is moving Up  ,Elevator next destination is 3,current floor 1
+Elevator is moving Up  ,Elevator next destination is 3,current floor 2
+Elevator is moving Up  ,Elevator next destination is 3,current floor 3
+Move process has been stopped
+Open Door Process is running now
+Open Door Thread has been Stopped
+Fan Process has been stopped

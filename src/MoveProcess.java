@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.TimeUnit;
@@ -31,11 +32,19 @@ public class MoveProcess extends Process {
 				d = elevator.direction();
 				if (d == Direction.Up) {
 					elevator.moveUp();
+					GUI.gui.destElev.setIcon(new ImageIcon("src/"+elevator.currentFloor()+"floor.png"));
+					GUI.gui.destElev.setPreferredSize(new Dimension(80,500));
+					GUI.gui.destElev.paintImmediately(GUI.gui.destElev.getVisibleRect());
+
 					IO.print("Elevator is moving Up  ,Elevator next destination is " + elevator.nextDestionation()
 							+ ",current floor " + GUI.gui.Memory.currentFloor);
 //					GUI.gui.setContentPane(new JLabel(new ImageIcon("src/background"+GUI.gui.Memory.currentFloor+".png")));
 				} else if (d == Direction.Down) {
 					elevator.moveDown();
+					GUI.gui.destElev.setIcon(new ImageIcon("src/"+elevator.currentFloor()+"floor.png"));
+					GUI.gui.destElev.setPreferredSize(new Dimension(80,500));
+					GUI.gui.destElev.paintImmediately(GUI.gui.destElev.getVisibleRect());
+
 					IO.print("Elevator is moving down  ,Elevator next destination is " + elevator.nextDestionation()
 							+ ",current floor " + GUI.gui.Memory.currentFloor);
 				}

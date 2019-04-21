@@ -39,6 +39,7 @@ public class GUI extends JFrame  implements ActionListener {
 	JLabel door;
 	JLabel doorimage;
 	JLabel destElev;
+	JPanel middle;
 	public GUI() {
 		Memory.startRunning = Instant.now();
 		JButton[] floorsbuttons = new JButton[5];
@@ -69,7 +70,7 @@ public class GUI extends JFrame  implements ActionListener {
 		destElev = new JLabel(new ImageIcon("src/0floor.png"));
 		destElev.setPreferredSize(new Dimension(80,500));
 		pb1.add(destElev);
-		JPanel middle = new JPanel(new FlowLayout());
+		middle = new JPanel(new FlowLayout());
 //		middle.add (new JLabel(new ImageIcon("src/middle.png")));
 		middle.setBackground(Color.white);
 		
@@ -99,6 +100,8 @@ public class GUI extends JFrame  implements ActionListener {
 	    door.setFont(new Font("Freestyle Script", Font.BOLD, 35));
 		middle.add(door);
 		middle.add(doorimage);
+		middle.setBackground(Color.DARK_GRAY);
+
 //		middle.setOpaque(false);
 		JPanel fadya = new JPanel();
 		fadya.setBackground(new Color(0,0,0,0));
@@ -168,17 +171,21 @@ public class GUI extends JFrame  implements ActionListener {
 //			fan.setIcon(new ImageIcon("src/fan2.gif"));
 			fan.setText("Fan is on");
 			fan.paintImmediately(fan.getVisibleRect());
+			middle.paintImmediately(middle.getVisibleRect());
 //			System.out.println(fan.getText());
 //			this.setVisible(false);
 //			fan.revalidate();
 //			fan.repaint();
 			door.setText("Door is closed");
 			door.paintImmediately(door.getVisibleRect());
+			middle.paintImmediately(middle.getVisibleRect());
+
 			
 			ImageIcon A2= new ImageIcon("src/door closed.jpg");
 			Icon s1= resizeIcon(A2,140,180);
 			doorimage.setIcon(s1);
 			doorimage.paintImmediately(doorimage.getVisibleRect());
+			middle.paintImmediately(middle.getVisibleRect());
 
 			
 //			doorimage.setIcon(new ImageIcon("src/door close.jpg"));
@@ -191,8 +198,8 @@ public class GUI extends JFrame  implements ActionListener {
 			Icon s= resizeIcon(A,140,180);
 			doorimage.setIcon(s);
 			
-			destElev.setIcon(new ImageIcon("src/"+elevator.currentFloor()+"floor.png"));
-			destElev.setPreferredSize(new Dimension(80,500));
+//			destElev.setIcon(new ImageIcon("src/"+elevator.currentFloor()+"floor.png"));
+//			destElev.setPreferredSize(new Dimension(80,500));
 		}
 		
 		else if(e.getActionCommand()=="time"){
