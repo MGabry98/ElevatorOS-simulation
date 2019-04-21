@@ -66,13 +66,17 @@ public class GUI extends JFrame  implements ActionListener {
 		pb1.add(destElev);
 		JPanel middle = new JPanel(new FlowLayout());
 //		middle.add (new JLabel(new ImageIcon("src/middle.png")));
-		middle.setBackground(Color.white);
-		
+//		middle.setBackground(Color.white);
+		middle.setOpaque(false);
 		middle.setPreferredSize(new Dimension(200,420));
+		JPanel screenpanel = new JPanel();
 		screen = new JLabel();
 		screen.setFont(new Font("Freestyle Script", Font.BOLD, 25));
 		screen.setForeground(Color.BLACK);
-		middle.add(screen);
+//		screen.setBackground(Color.BLUE);
+		screenpanel.add(screen);
+		screenpanel.setBackground(Color.WHITE);
+		middle.add(screenpanel);
 //		fan = new JLabel(new ImageIcon("src/fan2.jpg"));
 		fan = new JLabel("Fan is off");
 		fan.setForeground(Color.CYAN);
@@ -96,7 +100,7 @@ public class GUI extends JFrame  implements ActionListener {
 			floors.add(floorsbuttons[i]);
 		floors.setPreferredSize(new Dimension (100,400));
 		floors.setBackground(new Color(0,0,0,0));
-		JPanel timeandfloor = new JPanel(new GridLayout(2,1));
+		JPanel timeandfloor = new JPanel(new GridLayout(2,1));	
 		JButton time = new JButton("Show Time");
 		time.setFont(new Font("Snap ITC", Font.PLAIN, 18));
 		time.setForeground(Color.WHITE);
@@ -144,6 +148,7 @@ public class GUI extends JFrame  implements ActionListener {
 //			fan.repaint();
 			Control.floor(elevator, e.getActionCommand(
 					));
+			fan.setText("fan is off");
 			destElev.setIcon(new ImageIcon("src/"+elevator.currentFloor()+"floor.png"));
 			destElev.setPreferredSize(new Dimension(80,500));
 		}
