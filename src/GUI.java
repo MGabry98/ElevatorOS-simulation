@@ -203,7 +203,7 @@ public class GUI extends JFrame  implements ActionListener {
 			destElev.setPreferredSize(new Dimension(80,500));
 
 			
-			door.setText("Door is open");
+			door.setText("Door is open   ");
 			
 			ImageIcon A= new ImageIcon("src/door open.jpg");
 			Icon s= resizeIcon(A,140,180);
