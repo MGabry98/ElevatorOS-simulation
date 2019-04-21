@@ -207,13 +207,18 @@ public class IO {
 						.getObjectSize(	GUI.gui.Memory.currentFloorProcess)
 				+ " bytes" + '\n');
 
-		IO.print("Total memory size:"
+		/*IO.print("Total memory size:"
 						+ ((int) (ObjectSizeCalculator
 								.getObjectSize(	GUI.gui.Memory.move)
 								* 3.7
 								+ ObjectSizeCalculator
 										.getObjectSize(	GUI.gui.Memory.time) + ObjectSizeCalculator
-									.getObjectSize(	GUI.gui.Memory.currentFloorProcess))));
+									.getObjectSize(	GUI.gui.Memory.currentFloorProcess))));*/
+		IO.print("Total memory size:"
+				+ ((int) (ObjectSizeCalculator
+						.getObjectSize(	GUI.gui.Memory))));
+		ProcessTime.allQueues();
+
 
 
 	

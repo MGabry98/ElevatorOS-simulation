@@ -5,6 +5,8 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
+
 public class Control {
 
 	static Instant start;
@@ -16,6 +18,8 @@ public class Control {
 			if (GUI.gui.Memory.noPriorityProcess.contains(GUI.gui.Memory.currentFloorProcess)) {
 				GUI.gui.Memory.currentFloorProcess.stop();
 				GUI.gui.Memory.currentFloorEndProcess = Instant.now();
+				ProcessTime.processrunstop.add(GUI.gui.Memory.currentFloorEndProcess);
+				ProcessTime.stoppedNow.add("Current Floor");
 				GUI.gui.Memory.currentFloorDurationProcess = Duration
 						.between(GUI.gui.Memory.currentFloorStartProcess, GUI.gui.Memory.currentFloorEndProcess).toMillis()
 						+ GUI.gui.Memory.currentFloorDurationProcess;
@@ -40,6 +44,8 @@ public class Control {
 				
 				GUI.gui.Memory.time.stop();
 				GUI.gui.Memory.timeendprocess = Instant.now();
+				ProcessTime.processrunstop.add(GUI.gui.Memory.timeendprocess);
+				ProcessTime.stoppedNow.add("Time");
 				GUI.gui.Memory.timedurationprocess = Duration.between(GUI.gui.Memory.timestartprocess, GUI.gui.Memory.timeendprocess)
 						.toMillis() + GUI.gui.Memory.timedurationprocess;
 
@@ -70,6 +76,10 @@ public class Control {
 //					GUI.gui.setVisible(true);
 					GUI.gui.Memory.fan.start();
 					GUI.gui.Memory.fanStartProcess = Instant.now();
+					ProcessTime.processrunstart.add(GUI.gui.Memory.fanStartProcess);
+					ProcessTime.runningNow.add("Fan");
+					ProcessTime.processmemorysize.add((long) (ObjectSizeCalculator
+							.getObjectSize(GUI.gui.Memory.fan)));
 					IO.print(GUI.gui.Memory.fan.ThreadName + " Process is running now");
 					GUI.gui.Memory.noPriorityProcess.add(GUI.gui.Memory.fan);
 					GUI.gui.Memory.runningThreads++;
@@ -79,7 +89,10 @@ public class Control {
 					GUI.gui.Memory.highPriorityProcesses.add(GUI.gui.Memory.close);
 					IO.print(GUI.gui.Memory.close.ThreadName + " Process is running now");
 					GUI.gui.Memory.closeStartProcess = Instant.now();
-
+					ProcessTime.processrunstart.add(GUI.gui.Memory.closeStartProcess);
+					ProcessTime.runningNow.add("Close");
+					ProcessTime.processmemorysize.add((long) (ObjectSizeCalculator
+							.getObjectSize(GUI.gui.Memory.close)));
 
 					GUI.gui.Memory.runningThreads++;
 					GUI.gui.Memory.close.start();
@@ -105,6 +118,10 @@ public class Control {
 							GUI.gui.Memory.move.start();
 							IO.print(GUI.gui.Memory.move.ThreadName + " Process is running now");
 							GUI.gui.Memory.runningThreads++;
+							ProcessTime.processrunstart.add(GUI.gui.Memory.moveStartProcess);
+							ProcessTime.runningNow.add("Move");
+							ProcessTime.processmemorysize.add((long) (ObjectSizeCalculator
+									.getObjectSize(GUI.gui.Memory.move)));
 						}
 					}
 				}
@@ -112,7 +129,10 @@ public class Control {
 					GUI.gui.Memory.open = new OpenDoorProcess(elevator);
 					GUI.gui.Memory.lowPriorityProcesses.add(GUI.gui.Memory.open);
 					GUI.gui.Memory.openStartProcess = Instant.now();
-
+					ProcessTime.processrunstart.add(GUI.gui.Memory.openStartProcess);
+					ProcessTime.runningNow.add("Open");
+					ProcessTime.processmemorysize.add((long) (ObjectSizeCalculator
+							.getObjectSize(GUI.gui.Memory.open)));
 					IO.print(GUI.gui.Memory.open.ThreadName + " Process is running now");
 
 					try {
@@ -145,6 +165,9 @@ public class Control {
 						GUI.gui.Memory.fan.stop();
 						GUI.gui.fan.setText("Fan is off");
 						GUI.gui.Memory.fan = null;
+						ProcessTime.processrunstop.add(GUI.gui.Memory.fanEndProcess);
+						ProcessTime.stoppedNow.add("Fan");
+
 					} else {
 						break;
 					}

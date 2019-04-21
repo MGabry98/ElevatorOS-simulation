@@ -27,6 +27,8 @@ public class CloseDoorProcess extends Process {
 		GUI.gui.Memory.runningThreads--;
 		GUI.gui.Memory.highPriorityProcesses.remove(this);
 		GUI.gui.Memory.closeEndProcess = Instant.now();
+		ProcessTime.processrunstop.add(GUI.gui.Memory.closeEndProcess);
+		ProcessTime.stoppedNow.add("close");
 		GUI.gui.Memory.closeDurationProcess = Duration.between(GUI.gui.Memory.closeStartProcess, GUI.gui.Memory.closeEndProcess)
 				.toMillis() + GUI.gui.Memory.closeDurationProcess;
 

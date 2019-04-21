@@ -22,20 +22,28 @@ Fan Process has been stopped
 Time Process is running now
 Time Process has been stopped
 Current Floor Process is running now
+Fan Process is running now
+Close Door Process is running now
+Close Door Thread has been Stopped
+Move Process is running now
+Elevator is moving Up  ,Elevator next destination is 1,current floor 1
+Move process has been stopped
+Open Door Process is running now
+Open Door Thread has been Stopped
 Current Floor Process has been stopped
 Time Process is running now
-Total time for Move Process: 4024 milliseconds
-Total time for Open Door Process: 211 milliseconds
-Total time for Close Door Process: 209 milliseconds
-Total time for fan Process: 6444 milliseconds
-Total time for time Process: 24841 milliseconds
-Total time for CurrentFloor Process: 1054 milliseconds
+Total time for Move Process: 6158 milliseconds
+Total time for Open Door Process: 1142 milliseconds
+Total time for Close Door Process: 612 milliseconds
+Total time for fan Process: 11973 milliseconds
+Total time for time Process: 6659 milliseconds
+Total time for CurrentFloor Process: 6983 milliseconds
 
-Size of Move Process: 47520 bytes
-Size of Open Door Process: 49944 bytes
-Size of Close Door Process: 50192 bytes
-Size of fan Process: 0 bytes
-Size of time Process: 50432 bytes
-Size of CurrentFloor Process: 50824 bytes
+Size of Move Process: 303432 bytes
+Size of Open Door Process: 303448 bytes
+Size of Close Door Process: 303448 bytes
+Size of fan Process: 5051536 bytes
+Size of time Process: 5051536 bytes
+Size of CurrentFloor Process: 303464 bytes
 
-Total memory size:289621
+Total memory size:5065128

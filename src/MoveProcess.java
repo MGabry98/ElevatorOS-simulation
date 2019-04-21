@@ -62,6 +62,8 @@ public class MoveProcess extends Process {
 		GUI.gui.Memory.moveEndProcess = Instant.now();
 		GUI.gui.Memory.moveDurationProcess = Duration.between(GUI.gui.Memory.moveStartProcess, GUI.gui.Memory.moveEndProcess)
 				.toMillis() + GUI.gui.Memory.moveDurationProcess;
+		ProcessTime.processrunstop.add(GUI.gui.Memory.moveEndProcess);
+		ProcessTime.stoppedNow.add("Move");
 		this.stop();
 		GUI.gui.Memory.move = null;
 

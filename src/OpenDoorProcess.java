@@ -23,6 +23,8 @@ public class OpenDoorProcess extends Process {
 		GUI.gui.Memory.openEndProcess = Instant.now();
 		GUI.gui.Memory.openDurationProcess = Duration.between(GUI.gui.Memory.openStartProcess, GUI.gui.Memory.openEndProcess)
 				.toMillis() + GUI.gui.Memory.openDurationProcess;
+		ProcessTime.processrunstop.add(GUI.gui.Memory.openEndProcess);
+		ProcessTime.stoppedNow.add("Open");
 		this.stop();
 		GUI.gui.Memory.open = null;
 
