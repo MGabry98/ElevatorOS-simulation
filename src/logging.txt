@@ -3,8 +3,10 @@ Fan Process is running now
 Close Door Process is running now
 Close Door Thread has been Stopped
 Move Process is running now
-Elevator is moving Up  ,Elevator next destination is 2,current floor 1
-Elevator is moving Up  ,Elevator next destination is 2,current floor 2
+Elevator is moving Up  ,Elevator next destination is 4,current floor 1
+Elevator is moving Up  ,Elevator next destination is 4,current floor 2
+Elevator is moving Up  ,Elevator next destination is 4,current floor 3
+Elevator is moving Up  ,Elevator next destination is 4,current floor 4
 Move process has been stopped
 Open Door Process is running now
 Open Door Thread has been Stopped
@@ -13,8 +15,28 @@ Fan Process is running now
 Close Door Process is running now
 Close Door Thread has been Stopped
 Move Process is running now
-Elevator is moving down  ,Elevator next destination is 0,current floor 1
+Elevator is moving down  ,Elevator next destination is 1,current floor 3
+Elevator is moving down  ,Elevator next destination is 1,current floor 2
+Elevator is moving down  ,Elevator next destination is 1,current floor 1
+Move process has been stopped
+Open Door Process is running now
+Open Door Thread has been Stopped
+Fan Process has been stopped
+Fan Process is running now
+Close Door Process is running now
+Close Door Thread has been Stopped
+Move Process is running now
 Elevator is moving down  ,Elevator next destination is 0,current floor 0
+Move process has been stopped
+Open Door Process is running now
+Open Door Thread has been Stopped
+Fan Process has been stopped
+Fan Process is running now
+Close Door Process is running now
+Close Door Thread has been Stopped
+Move Process is running now
+Elevator is moving Up  ,Elevator next destination is 2,current floor 1
+Elevator is moving Up  ,Elevator next destination is 2,current floor 2
 Move process has been stopped
 Open Door Process is running now
 Open Door Thread has been Stopped
@@ -22,28 +44,77 @@ Fan Process has been stopped
 Time Process is running now
 Time Process has been stopped
 Current Floor Process is running now
-Fan Process is running now
-Close Door Process is running now
-Close Door Thread has been Stopped
-Move Process is running now
-Elevator is moving Up  ,Elevator next destination is 1,current floor 1
-Move process has been stopped
-Open Door Process is running now
-Open Door Thread has been Stopped
 Current Floor Process has been stopped
 Time Process is running now
-Total time for Move Process: 6158 milliseconds
-Total time for Open Door Process: 1142 milliseconds
-Total time for Close Door Process: 612 milliseconds
-Total time for fan Process: 11973 milliseconds
-Total time for time Process: 6659 milliseconds
-Total time for CurrentFloor Process: 6983 milliseconds
+Total time for Move Process: 15048 milliseconds
+Total time for Open Door Process: 709 milliseconds
+Total time for Close Door Process: 726 milliseconds
+Total time for fan Process: 24988 milliseconds
+Total time for time Process: 5301 milliseconds
+Total time for CurrentFloor Process: 1122 milliseconds
 
-Size of Move Process: 303432 bytes
-Size of Open Door Process: 303448 bytes
-Size of Close Door Process: 303448 bytes
-Size of fan Process: 5051536 bytes
-Size of time Process: 5051536 bytes
+Size of Move Process: 303000 bytes
+Size of Open Door Process: 303016 bytes
+Size of Close Door Process: 303016 bytes
+Size of fan Process: 0 bytes
+Size of time Process: 303000 bytes
 Size of CurrentFloor Process: 303464 bytes
 
-Total memory size:5065128
+Total memory size:317176
+TOTAL MEMORY USED: 317176
+Fan is running started at: 2019-04-22T05:22:51.076Z
+IT used: 5007632
+Close is running started at: 2019-04-22T05:22:54.828Z
+IT used: 5046200
+Move is running started at: 2019-04-22T05:22:56.751Z
+IT used: 5059856
+Open is running started at: 2019-04-22T05:23:03.057Z
+IT used: 5062456
+Fan is running started at: 2019-04-22T05:23:04.900Z
+IT used: 5043440
+Close is running started at: 2019-04-22T05:23:04.925Z
+IT used: 5043704
+Move is running started at: 2019-04-22T05:23:05.932Z
+IT used: 5043688
+Open is running started at: 2019-04-22T05:23:11.725Z
+IT used: 5057520
+Fan is running started at: 2019-04-22T05:23:11.970Z
+IT used: 5041232
+Close is running started at: 2019-04-22T05:23:11.987Z
+IT used: 5041712
+Move is running started at: 2019-04-22T05:23:12.994Z
+IT used: 5053344
+Open is running started at: 2019-04-22T05:23:14.006Z
+IT used: 5064416
+Fan is running started at: 2019-04-22T05:23:15.571Z
+IT used: 5040600
+Close is running started at: 2019-04-22T05:23:15.603Z
+IT used: 5040872
+Move is running started at: 2019-04-22T05:23:16.610Z
+IT used: 5047384
+Open is running started at: 2019-04-22T05:23:18.641Z
+IT used: 5051912
+Time is running started at: 2019-04-22T05:23:19.804Z
+IT used: 0
+Current Floor is running started at: 2019-04-22T05:23:21.795Z
+IT used: 0
+Time is running started at: 2019-04-22T05:23:22.914Z
+IT used: 302984
+close stopped at instant: 2019-04-22T05:22:55.199Z
+Move stopped at instant: 2019-04-22T05:23:02.963Z
+Open stopped at instant: 2019-04-22T05:23:03.420Z
+Fan stopped at instant: 2019-04-22T05:23:03.482Z
+close stopped at instant: 2019-04-22T05:23:05.038Z
+Move stopped at instant: 2019-04-22T05:23:11.725Z
+Open stopped at instant: 2019-04-22T05:23:11.840Z
+Fan stopped at instant: 2019-04-22T05:23:11.941Z
+close stopped at instant: 2019-04-22T05:23:12.102Z
+Move stopped at instant: 2019-04-22T05:23:14.006Z
+Open stopped at instant: 2019-04-22T05:23:14.122Z
+Fan stopped at instant: 2019-04-22T05:23:14.225Z
+close stopped at instant: 2019-04-22T05:23:15.730Z
+Move stopped at instant: 2019-04-22T05:23:18.641Z
+Open stopped at instant: 2019-04-22T05:23:18.756Z
+Fan stopped at instant: 2019-04-22T05:23:18.857Z
+Time stopped at instant: 2019-04-22T05:23:21.817Z
+Current Floor stopped at instant: 2019-04-22T05:23:22.917Z

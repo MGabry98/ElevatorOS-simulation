@@ -2,6 +2,8 @@ import java.time.Instant;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
+
 
 public class ProcessTime {
 	static Instant startTime;
@@ -12,12 +14,14 @@ public class ProcessTime {
 	static Queue<String> stoppedNow=new LinkedList<String>();
 
 	public static void allQueues() {
+		IO.print("TOTAL MEMORY USED: "+(ObjectSizeCalculator
+						.getObjectSize(	GUI.gui.Memory)));
 		while(!processrunstart.isEmpty() && !runningNow.isEmpty()&&!processmemorysize.isEmpty()) {
-			System.out.println(runningNow.remove()+" is running started at: "+processrunstart.remove()+'\n'+
+			IO.print(runningNow.remove()+" is running started at: "+processrunstart.remove()+'\n'+
 					"IT used: "+processmemorysize.remove());
 		}
 		while(!processrunstop.isEmpty()&& !stoppedNow.isEmpty()) {
-			System.out.println(stoppedNow.remove()+" stopped at instant: "+processrunstop.remove());
+			IO.print(stoppedNow.remove()+" stopped at instant: "+processrunstop.remove());
 		}
 	}
 }
